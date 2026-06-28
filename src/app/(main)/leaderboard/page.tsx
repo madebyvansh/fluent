@@ -26,6 +26,10 @@ const LeaderboardPage = async () => {
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
   }
+
+  const formatNumber = (n: number) => n.toString().padStart(2, "0");
+  console.log(topUsers);
+
   return (
     <div className="flex flex-row-reverse gap-12 px-6">
       <StickyWrapper>
@@ -60,13 +64,19 @@ const LeaderboardPage = async () => {
             >
               <p className="font-bold mr-4">
                 {idx + 1 === 1 ? (
-                  <Image src="/crown.svg" alt="crown" width={22} height={22} />
+                  <Image
+                    src="/crown.svg"
+                    alt="crown"
+                    width={20}
+                    height={20}
+                    className=""
+                  />
                 ) : (
-                  `${idx + 1}.`
+                  `${formatNumber(idx + 1)}.`
                 )}
               </p>
               <Avatar className="w-10 h-10 mr-4">
-                <AvatarImage src={userProgress.userImgSrc} className="" />
+                <AvatarImage src={item.userImgSrc} className="" />
               </Avatar>
               <p className="font-semibold text-neutral-800 flex-1">
                 {item.userName}
